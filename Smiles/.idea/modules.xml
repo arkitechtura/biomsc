@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/CDKParserTests/CDKParserTests.iml" filepath="$PROJECT_DIR$/CDKParserTests/CDKParserTests.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Smiles.iml" filepath="$PROJECT_DIR$/Smiles.iml" />
+    </modules>
+  </component>
+</project>
+
