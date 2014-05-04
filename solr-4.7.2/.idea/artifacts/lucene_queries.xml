@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="lucene-queries">
+    <output-path>$PROJECT_DIR$/out/artifacts/lucene_queries</output-path>
+    <root id="archive" name="lucene-queries.jar">
+      <element id="module-output" name="queries" />
+    </root>
+  </artifact>
+</component>

@@ -1,0 +1,43 @@
+<component name="ArtifactManager">
+  <artifact type="war" build-on-make="true" name="solr">
+    <output-path>$PROJECT_DIR$/out/artifacts/solr</output-path>
+    <root id="archive" name="solr.war">
+      <element id="javaee-facet-resources" facet="parent/web/Web" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="icu" />
+          <element id="module-output" name="solr-core" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="file-copy" path="$PROJECT_DIR$/lucene/analysis/icu/lib/icu4j-52.1.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/lucene/analysis/phonetic/lib/commons-codec-1.7.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/lucene/expressions/lib/asm-4.1.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/lucene/expressions/lib/asm-commons-4.1.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/lucene/expressions/lib/antlr-runtime-3.5.jar" />
+          <element id="library" level="project" name="Solr core library" />
+          <element id="file-copy" path="$PROJECT_DIR$/solr/contrib/analysis-extras/lib/icu4j-52.1.jar" />
+          <element id="library" level="project" name="Solrj library" />
+          <element id="file-copy" path="$PROJECT_DIR$/lucene/sandbox/lib/jakarta-regexp-1.4.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/lucene/spatial/lib/spatial4j-0.4.1.jar" />
+          <element id="artifact" artifact-name="lucene-analyzers-common" />
+          <element id="artifact" artifact-name="lucene-analyzers-kuromoji" />
+          <element id="artifact" artifact-name="lucene-analyzers-phonetic" />
+          <element id="artifact" artifact-name="lucene-codecs" />
+          <element id="artifact" artifact-name="lucene-core" />
+          <element id="artifact" artifact-name="lucene-expressions" />
+          <element id="artifact" artifact-name="lucene-grouping" />
+          <element id="artifact" artifact-name="lucene-highlighter" />
+          <element id="artifact" artifact-name="lucene-join" />
+          <element id="artifact" artifact-name="lucene-memory" />
+          <element id="artifact" artifact-name="lucene-misc" />
+          <element id="artifact" artifact-name="lucene-queries" />
+          <element id="artifact" artifact-name="lucene-queryparser" />
+          <element id="artifact" artifact-name="lucene-spatial" />
+          <element id="artifact" artifact-name="lucene-suggest" />
+          <element id="artifact" artifact-name="solr-solrj" />
+          <element id="artifact" artifact-name="lucene-sandbox" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>

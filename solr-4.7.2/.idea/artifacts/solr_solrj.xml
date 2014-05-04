@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="solr-solrj">
+    <output-path>$PROJECT_DIR$/out/artifacts/solr_solrj</output-path>
+    <root id="archive" name="solr-solrj.jar">
+      <element id="module-output" name="solrj" />
+      <element id="library" level="project" name="Solrj library" />
+    </root>
+  </artifact>
+</component>

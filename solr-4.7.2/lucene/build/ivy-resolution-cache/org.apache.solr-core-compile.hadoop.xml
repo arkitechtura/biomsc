@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="ivy-report.xsl"?>
+<ivy-report version="1.0">
+	<info
+		organisation="org.apache.solr"
+		module="core"
+		revision="working@valhalla"
+		conf="compile.hadoop"
+		confs="compile, compile.hadoop"
+		date="20140426201723"/>
+	<dependencies>
+		<module organisation="com.googlecode.concurrentlinkedhashmap" name="concurrentlinkedhashmap-lru">
+			<revision name="1.2" status="release" pubdate="20110520190632" resolver="public" artresolver="main" homepage="http://code.google.com/p/concurrentlinkedhashmap" downloaded="true" searched="true" default="false" conf="system, default, optional, compile, *, provided, runtime, javadoc, sources, master" position="11">
+				<license name="Apache" url="http://www.apache.org/licenses/LICENSE-2.0.txt"/>
+				<metadata-artifact status="successful" details="" size="7980" time="720" location="/home/equiros/.ivy2/cache/com.googlecode.concurrentlinkedhashmap/concurrentlinkedhashmap-lru/ivy-1.2.xml" searched="true" original-local-location="/home/equiros/.ivy2/cache/com.googlecode.concurrentlinkedhashmap/concurrentlinkedhashmap-lru/ivy-1.2.xml.original" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/com/googlecode/concurrentlinkedhashmap/concurrentlinkedhashmap-lru/1.2/concurrentlinkedhashmap-lru-1.2.pom"/>
+				<caller organisation="org.apache.solr" name="core" conf="compile.hadoop" rev="1.2" rev-constraint-default="1.2" rev-constraint-dynamic="1.2" callerrev="working@valhalla"/>
+				<artifacts>
+					<artifact name="concurrentlinkedhashmap-lru" type="jar" ext="jar" status="successful" details="" size="53011" time="1009" location="/home/equiros/.ivy2/cache/com.googlecode.concurrentlinkedhashmap/concurrentlinkedhashmap-lru/jars/concurrentlinkedhashmap-lru-1.2.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/com/googlecode/concurrentlinkedhashmap/concurrentlinkedhashmap-lru/1.2/concurrentlinkedhashmap-lru-1.2.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.apache.hadoop" name="hadoop-hdfs">
+			<revision name="2.2.0" status="release" pubdate="20131007003230" resolver="public" artresolver="main" homepage="" downloaded="true" searched="true" default="false" conf="system, default, optional, compile, *, provided, runtime, javadoc, sources, master" position="6">
+				<metadata-artifact status="successful" details="" size="24025" time="1018" location="/home/equiros/.ivy2/cache/org.apache.hadoop/hadoop-hdfs/ivy-2.2.0.xml" searched="true" original-local-location="/home/equiros/.ivy2/cache/org.apache.hadoop/hadoop-hdfs/ivy-2.2.0.xml.original" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/org/apache/hadoop/hadoop-hdfs/2.2.0/hadoop-hdfs-2.2.0.pom"/>
+				<caller organisation="org.apache.solr" name="core" conf="compile.hadoop" rev="2.2.0" rev-constraint-default="2.2.0" rev-constraint-dynamic="2.2.0" callerrev="working@valhalla"/>
+				<artifacts>
+					<artifact name="hadoop-hdfs" type="jar" ext="jar" status="successful" details="" size="5242252" time="34429" location="/home/equiros/.ivy2/cache/org.apache.hadoop/hadoop-hdfs/jars/hadoop-hdfs-2.2.0.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/org/apache/hadoop/hadoop-hdfs/2.2.0/hadoop-hdfs-2.2.0.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.apache.hadoop" name="hadoop-common">
+			<revision name="2.2.0" status="release" pubdate="20131007003027" resolver="public" artresolver="main" homepage="" downloaded="true" searched="true" default="false" conf="system, default, optional, compile, *, provided, runtime, javadoc, sources, master" position="5">
+				<metadata-artifact status="successful" details="" size="26873" time="1260" location="/home/equiros/.ivy2/cache/org.apache.hadoop/hadoop-common/ivy-2.2.0.xml" searched="true" original-local-location="/home/equiros/.ivy2/cache/org.apache.hadoop/hadoop-common/ivy-2.2.0.xml.original" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/org/apache/hadoop/hadoop-common/2.2.0/hadoop-common-2.2.0.pom"/>
+				<caller organisation="org.apache.solr" name="core" conf="compile.hadoop" rev="2.2.0" rev-constraint-default="2.2.0" rev-constraint-dynamic="2.2.0" callerrev="working@valhalla"/>
+				<artifacts>
+					<artifact name="hadoop-common" type="jar" ext="jar" status="successful" details="" size="2735584" time="23310" location="/home/equiros/.ivy2/cache/org.apache.hadoop/hadoop-common/jars/hadoop-common-2.2.0.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/org/apache/hadoop/hadoop-common/2.2.0/hadoop-common-2.2.0.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.apache.hadoop" name="hadoop-auth">
+			<revision name="2.2.0" status="release" pubdate="20131007002854" resolver="public" artresolver="main" homepage="" downloaded="true" searched="true" default="false" conf="system, default, optional, compile, *, provided, runtime, javadoc, sources, master" position="8">
+				<metadata-artifact status="successful" details="" size="7028" time="1351" location="/home/equiros/.ivy2/cache/org.apache.hadoop/hadoop-auth/ivy-2.2.0.xml" searched="true" original-local-location="/home/equiros/.ivy2/cache/org.apache.hadoop/hadoop-auth/ivy-2.2.0.xml.original" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/org/apache/hadoop/hadoop-auth/2.2.0/hadoop-auth-2.2.0.pom"/>
+				<caller organisation="org.apache.solr" name="core" conf="compile.hadoop" rev="2.2.0" rev-constraint-default="2.2.0" rev-constraint-dynamic="2.2.0" callerrev="working@valhalla"/>
+				<artifacts>
+					<artifact name="hadoop-auth" type="jar" ext="jar" status="successful" details="" size="49750" time="866" location="/home/equiros/.ivy2/cache/org.apache.hadoop/hadoop-auth/jars/hadoop-auth-2.2.0.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/org/apache/hadoop/hadoop-auth/2.2.0/hadoop-auth-2.2.0.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="com.google.protobuf" name="protobuf-java">
+			<revision name="2.5.0" status="release" pubdate="20130307181811" resolver="public" artresolver="main" homepage="http://code.google.com/p/protobuf" downloaded="true" searched="true" default="false" conf="system, default, optional, compile, *, provided, runtime, javadoc, sources, master" position="10">
+				<license name="New BSD license" url="http://www.opensource.org/licenses/bsd-license.php"/>
+				<metadata-artifact status="successful" details="" size="8375" time="724" location="/home/equiros/.ivy2/cache/com.google.protobuf/protobuf-java/ivy-2.5.0.xml" searched="true" original-local-location="/home/equiros/.ivy2/cache/com.google.protobuf/protobuf-java/ivy-2.5.0.xml.original" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/com/google/protobuf/protobuf-java/2.5.0/protobuf-java-2.5.0.pom"/>
+				<caller organisation="org.apache.solr" name="core" conf="compile.hadoop" rev="2.5.0" rev-constraint-default="2.5.0" rev-constraint-dynamic="2.5.0" callerrev="working@valhalla"/>
+				<artifacts>
+					<artifact name="protobuf-java" type="bundle" ext="jar" status="successful" details="" size="533455" time="5917" location="/home/equiros/.ivy2/cache/com.google.protobuf/protobuf-java/bundles/protobuf-java-2.5.0.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/com/google/protobuf/protobuf-java/2.5.0/protobuf-java-2.5.0.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="commons-configuration" name="commons-configuration">
+			<revision name="1.6" status="release" pubdate="20090204134444" resolver="public" artresolver="main" homepage="http://commons.apache.org/${pom.artifactId.substring(8)}/" downloaded="true" searched="true" default="false" conf="system, default, optional, compile, *, provided, runtime, javadoc, sources, master" position="9">
+				<license name="The Apache Software License, Version 2.0" url="/LICENSE.txt"/>
+				<metadata-artifact status="successful" details="" size="13319" time="1107" location="/home/equiros/.ivy2/cache/commons-configuration/commons-configuration/ivy-1.6.xml" searched="true" original-local-location="/home/equiros/.ivy2/cache/commons-configuration/commons-configuration/ivy-1.6.xml.original" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/commons-configuration/commons-configuration/1.6/commons-configuration-1.6.pom"/>
+				<caller organisation="org.apache.solr" name="core" conf="compile.hadoop" rev="1.6" rev-constraint-default="1.6" rev-constraint-dynamic="1.6" callerrev="working@valhalla"/>
+				<artifacts>
+					<artifact name="commons-configuration" type="jar" ext="jar" status="successful" details="" size="298829" time="4704" location="/home/equiros/.ivy2/cache/commons-configuration/commons-configuration/jars/commons-configuration-1.6.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/commons-configuration/commons-configuration/1.6/commons-configuration-1.6.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.apache.hadoop" name="hadoop-annotations">
+			<revision name="2.2.0" status="release" pubdate="20131007002841" resolver="public" artresolver="main" homepage="" downloaded="true" searched="true" default="false" conf="system, default, optional, compile, *, provided, runtime, javadoc, sources, master" position="7">
+				<metadata-artifact status="successful" details="" size="2388" time="1216" location="/home/equiros/.ivy2/cache/org.apache.hadoop/hadoop-annotations/ivy-2.2.0.xml" searched="true" original-local-location="/home/equiros/.ivy2/cache/org.apache.hadoop/hadoop-annotations/ivy-2.2.0.xml.original" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/org/apache/hadoop/hadoop-annotations/2.2.0/hadoop-annotations-2.2.0.pom"/>
+				<caller organisation="org.apache.solr" name="core" conf="compile.hadoop" rev="2.2.0" rev-constraint-default="2.2.0" rev-constraint-dynamic="2.2.0" callerrev="working@valhalla"/>
+				<artifacts>
+					<artifact name="hadoop-annotations" type="jar" ext="jar" status="successful" details="" size="16778" time="1233" location="/home/equiros/.ivy2/cache/org.apache.hadoop/hadoop-annotations/jars/hadoop-annotations-2.2.0.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/org/apache/hadoop/hadoop-annotations/2.2.0/hadoop-annotations-2.2.0.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="com.carrotsearch" name="hppc">
+			<revision name="0.5.2" status="release" pubdate="20130709015529" resolver="public" artresolver="main" homepage="" downloaded="true" searched="true" default="false" conf="system, default, optional, compile, provided, runtime, javadoc, sources, master" position="4">
+				<metadata-artifact status="successful" details="" size="17207" time="1080" location="/home/equiros/.ivy2/cache/com.carrotsearch/hppc/ivy-0.5.2.xml" searched="true" original-local-location="/home/equiros/.ivy2/cache/com.carrotsearch/hppc/ivy-0.5.2.xml.original" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/com/carrotsearch/hppc/0.5.2/hppc-0.5.2.pom"/>
+				<caller organisation="org.apache.solr" name="core" conf="compile.hadoop" rev="0.5.2" rev-constraint-default="0.5.2" rev-constraint-dynamic="0.5.2" callerrev="working@valhalla"/>
+				<artifacts>
+					<artifact name="hppc" type="jar" ext="jar" status="successful" details="" size="1288954" time="9837" location="/home/equiros/.ivy2/cache/com.carrotsearch/hppc/jars/hppc-0.5.2.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/com/carrotsearch/hppc/0.5.2/hppc-0.5.2.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="dom4j" name="dom4j">
+			<revision name="1.6.1" status="release" pubdate="20060210063318" resolver="public" artresolver="main" homepage="http://dom4j.org" downloaded="true" searched="true" default="false" conf="system, default, optional, compile, provided, runtime, javadoc, sources, master" position="3">
+				<metadata-artifact status="successful" details="" size="6765" time="608" location="/home/equiros/.ivy2/cache/dom4j/dom4j/ivy-1.6.1.xml" searched="true" original-local-location="/home/equiros/.ivy2/cache/dom4j/dom4j/ivy-1.6.1.xml.original" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/dom4j/dom4j/1.6.1/dom4j-1.6.1.pom"/>
+				<caller organisation="org.apache.solr" name="core" conf="compile.hadoop" rev="1.6.1" rev-constraint-default="1.6.1" rev-constraint-dynamic="1.6.1" callerrev="working@valhalla"/>
+				<artifacts>
+					<artifact name="dom4j" type="jar" ext="jar" status="successful" details="" size="313898" time="2333" location="/home/equiros/.ivy2/cache/dom4j/dom4j/jars/dom4j-1.6.1.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/dom4j/dom4j/1.6.1/dom4j-1.6.1.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.ow2.asm" name="asm-commons">
+			<revision name="4.1" status="release" pubdate="20121014093823" resolver="public" artresolver="main" homepage="" downloaded="false" searched="false" default="false" conf="system, default, optional, compile, provided, runtime, javadoc, sources, master" position="2">
+				<metadata-artifact status="no" details="" size="3003" time="0" location="/home/equiros/.ivy2/cache/org.ow2.asm/asm-commons/ivy-4.1.xml" searched="false" original-local-location="/home/equiros/.ivy2/cache/org.ow2.asm/asm-commons/ivy-4.1.xml.original" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/org/ow2/asm/asm-commons/4.1/asm-commons-4.1.pom"/>
+				<caller organisation="org.apache.solr" name="core" conf="compile.hadoop" rev="4.1" rev-constraint-default="4.1" rev-constraint-dynamic="4.1" callerrev="working@valhalla"/>
+				<artifacts>
+					<artifact name="asm-commons" type="jar" ext="jar" status="no" details="" size="38090" time="0" location="/home/equiros/.ivy2/cache/org.ow2.asm/asm-commons/jars/asm-commons-4.1.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/org/ow2/asm/asm-commons/4.1/asm-commons-4.1.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.ow2.asm" name="asm">
+			<revision name="4.1" status="release" pubdate="20121014093745" resolver="public" artresolver="main" homepage="" downloaded="false" searched="false" default="false" conf="system, default, optional, compile, provided, runtime, javadoc, sources, master" position="1">
+				<metadata-artifact status="no" details="" size="2351" time="0" location="/home/equiros/.ivy2/cache/org.ow2.asm/asm/ivy-4.1.xml" searched="false" original-local-location="/home/equiros/.ivy2/cache/org.ow2.asm/asm/ivy-4.1.xml.original" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/org/ow2/asm/asm/4.1/asm-4.1.pom"/>
+				<caller organisation="org.apache.solr" name="core" conf="compile.hadoop" rev="4.1" rev-constraint-default="4.1" rev-constraint-dynamic="4.1" callerrev="working@valhalla"/>
+				<artifacts>
+					<artifact name="asm" type="jar" ext="jar" status="no" details="" size="47359" time="0" location="/home/equiros/.ivy2/cache/org.ow2.asm/asm/jars/asm-4.1.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/org/ow2/asm/asm/4.1/asm-4.1.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.antlr" name="antlr-runtime">
+			<revision name="3.5" status="release" pubdate="20130104213525" resolver="public" artresolver="main" homepage="http://www.antlr.org" downloaded="false" searched="false" default="false" conf="system, default, optional, compile, provided, runtime, javadoc, sources, master" position="0">
+				<metadata-artifact status="no" details="" size="3128" time="0" location="/home/equiros/.ivy2/cache/org.antlr/antlr-runtime/ivy-3.5.xml" searched="false" original-local-location="/home/equiros/.ivy2/cache/org.antlr/antlr-runtime/ivy-3.5.xml.original" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/org/antlr/antlr-runtime/3.5/antlr-runtime-3.5.pom"/>
+				<caller organisation="org.apache.solr" name="core" conf="compile.hadoop" rev="3.5" rev-constraint-default="3.5" rev-constraint-dynamic="3.5" callerrev="working@valhalla"/>
+				<artifacts>
+					<artifact name="antlr-runtime" type="jar" ext="jar" status="no" details="" size="167735" time="0" location="/home/equiros/.ivy2/cache/org.antlr/antlr-runtime/jars/antlr-runtime-3.5.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/org/antlr/antlr-runtime/3.5/antlr-runtime-3.5.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+	</dependencies>
+</ivy-report>

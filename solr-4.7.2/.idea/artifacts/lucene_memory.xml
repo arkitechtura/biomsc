@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="lucene-memory">
+    <output-path>$PROJECT_DIR$/out/artifacts/lucene_memory</output-path>
+    <root id="archive" name="lucene-memory.jar">
+      <element id="module-output" name="memory" />
+    </root>
+  </artifact>
+</component>

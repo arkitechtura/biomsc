@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="lucene-spatial">
+    <output-path>$PROJECT_DIR$/out/artifacts/lucene_spatial</output-path>
+    <root id="archive" name="lucene-spatial.jar">
+      <element id="module-output" name="spatial" />
+    </root>
+  </artifact>
+</component>

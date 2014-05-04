@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="lucene-highlighter">
+    <output-path>$PROJECT_DIR$/out/artifacts/lucene_highlighter</output-path>
+    <root id="archive" name="lucene-highlighter.jar">
+      <element id="module-output" name="highlighter" />
+    </root>
+  </artifact>
+</component>

@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="lucene-codecs">
+    <output-path>$PROJECT_DIR$/out/artifacts/lucene_codecs</output-path>
+    <root id="archive" name="lucene-codecs.jar">
+      <element id="module-output" name="codecs" />
+      <element id="module-output" name="codecs-resources" />
+    </root>
+  </artifact>
+</component>

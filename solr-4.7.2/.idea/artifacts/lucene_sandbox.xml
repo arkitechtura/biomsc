@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="lucene-sandbox">
+    <output-path>$PROJECT_DIR$/out/artifacts/lucene_sandbox</output-path>
+    <root id="archive" name="lucene-sandbox.jar">
+      <element id="module-output" name="sandbox" />
+    </root>
+  </artifact>
+</component>

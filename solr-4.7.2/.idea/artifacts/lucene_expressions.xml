@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="lucene-expressions">
+    <output-path>$PROJECT_DIR$/out/artifacts/lucene_expressions</output-path>
+    <root id="archive" name="lucene-expressions.jar">
+      <element id="module-output" name="expressions" />
+    </root>
+  </artifact>
+</component>

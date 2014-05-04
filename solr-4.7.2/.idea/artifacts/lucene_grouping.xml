@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="lucene-grouping">
+    <output-path>$PROJECT_DIR$/out/artifacts/lucene_grouping</output-path>
+    <root id="archive" name="lucene-grouping.jar">
+      <element id="module-output" name="grouping" />
+    </root>
+  </artifact>
+</component>

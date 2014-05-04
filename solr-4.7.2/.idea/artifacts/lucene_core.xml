@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="lucene-core">
+    <output-path>$PROJECT_DIR$/out/artifacts/lucene_core</output-path>
+    <root id="archive" name="lucene-core.jar">
+      <element id="module-output" name="lucene-core" />
+      <element id="module-output" name="lucene-core-resources" />
+    </root>
+  </artifact>
+</component>

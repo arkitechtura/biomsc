@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="lucene-analyzers-phonetic">
+    <output-path>$PROJECT_DIR$/out/artifacts/lucene_analyzers_phonetic</output-path>
+    <root id="archive" name="lucene-analyzers-phonetic.jar">
+      <element id="module-output" name="phonetic" />
+    </root>
+  </artifact>
+</component>
