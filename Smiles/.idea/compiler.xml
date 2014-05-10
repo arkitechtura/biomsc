@@ -23,6 +23,7 @@
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
         <module name="CDKParserTests" />
+        <module name="SolrSmiles" />
       </profile>
     </annotationProcessing>
   </component>
