@@ -1,0 +1,10 @@
+body {
+  padding-top: 50px;
+  padding-bottom: 20px;
+}
+
+.cap{text-transform:lowercase;}
+
+.r1{background-color: #EBE9E9;}
+
+.navbar{min-height: 65px;}
