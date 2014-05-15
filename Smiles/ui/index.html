@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -160,6 +159,7 @@
                 "&sort=strdist%28%22"+query+"%22,%20"+queBuscar+",edit%29%20desc" +
                 "&wt=json";
 
+
         $.ajax({
             url:'http://localhost:8983/solr/smiles/select',
             type:'GET',
@@ -177,20 +177,11 @@
                     // $("#resultH").empty();
                     $("#resultH").append('' +
                             '<div class="row">' +
-                            '  <div class="col-md-4">' +
+                            '  <div class="col-md-9">' +
                             '<strong >Smiles</strong>' +
                             '</div>' +
                             '<div class="col-md-1">' +
                             '        <strong>PubchemID</strong>' +
-                            '</div>' +
-                            '<div class="col-md-2">' +
-                            '        <strong>Estructura</strong>' +
-                            '</div>' +
-                            '<div class="col-md-1">' +
-                            '        <strong>Átomos</strong>' +
-                            '</div>' +
-                            '<div class="col-md-1">' +
-                            '        <strong>Aros</strong>' +
                             '</div>' +
                             '<div class="col-md-1">' +
                             '        <strong>Distancia</strong>' +
@@ -202,20 +193,11 @@
                     $.each(json.response.docs, function() {
 
                         var fotos ='<div class="row r'+row%2+' ">'+
-                                '  <div class="col-md-4">' +
+                                '  <div class="col-md-9">' +
                                 '<span >'+this.smiles+'</span>' +
                                 '</div>' +
                                 '<div class="col-md-1">' +
-                                '        <span><a href="https://pubchem.ncbi.nlm.nih.gov/summary/summary.cgi?cid='+this.pubchemid+' target="_blank">'+this.pubchemid+'</a></span>' +
-                                '</div>' +
-                                '<div class="col-md-1">' +
-                                '        <span>'+this.name+'</span>' +
-                                '</div>' +
-                                '<div class="col-md-2">' +
-                                '        <span>'+this.atoms+'</span>' +
-                                '</div>' +
-                                '<div class="col-md-1">' +
-                                '        <span>'+this.rings+'</span>' +
+                                '        <span><a href="https://pubchem.ncbi.nlm.nih.gov/summary/summary.cgi?cid='+this.pubchemid+'" target="_blank">'+this.pubchemid+'</a></span>' +
                                 '</div>' +
                                 '<div class="col-md-1">' +
                                 '        <span>'+this.distance+'</span>' +
@@ -242,4 +224,3 @@
     resultGrid();
 </script>
 </body>
-</html>
