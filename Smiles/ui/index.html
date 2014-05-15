@@ -54,27 +54,43 @@
                 <label for="searchBox">Escriba la estructura en SMILES:</label>
             </div>
         </div>
-        <div class="row">
-            <form role="form" name="search" action="#" id="searchForm" method="get" class="">
+        <form role="form" name="search" action="#" id="searchForm" method="get" class="">
+            <div class="row">
+
                 <div class="col-md-8 col-md-offset-1">
                     <div class="form-group">
                         <input type="text" name="searchBox" class="search form-control" id="searchBox" value=""/>
                     </div>
                 </div>
                 <div class="col-md-2">
-                    <button id="searchBtn" type="button" class="btn btn-primary  ">
+                    <button id="searchBtn" type="button" onclick="resultGrid();" class="btn btn-primary  ">
                         <span class="glyphicon glyphicon-search"></span> Buscar
                     </button>
                 </div>
+            </div>
+            <div class="row">
 
-            </form>
-        </div>
+                <div class="col-md-3 col-md-offset-1">
+                    <div class="form-group">
+                        <label><input type="radio" name="queBuscar" checked value="1"> Buscar por moléculas</label>
+                        <label><input type="radio" name="queBuscar" value="2"> Buscar por aros</label>
+                    </div>
+                </div>
+                <!--   <div class="col-md-3">
+                       <div class="form-group">
+                           <label><input type="radio" name="comoBuscar" checked value="1"> Buscar por similaridad</label>
+                           <label><input type="radio" name="comoBuscar" value="2"> Buscar por exactitud</label>
+                       </div>
+                   </div> -->
+            </div>
+        </form>
+
         <div class="row">
             <div class="col-md-8 col-md-offset-1">
                 <ul>
-                    <li><a href="#" onclick="ejemplo(1);">Ejemplo 1</a> </li>
-                    <li><a href="#" onclick="ejemplo(2);">Ejemplo 2</a> </li>
-                    <li><a href="#" onclick="ejemplo(3);">Ejemplo 3</a> </li>
+                    <li><a href="#" onclick="ejemplo(1);">Ejemplo Estructura</a> </li>
+                    <li><a href="#" onclick="ejemplo(2);">Ejemplo Estructura</a> </li>
+                    <li><a href="#" onclick="ejemplo(3);">Ejemplo Aro</a> </li>
                 </ul>
             </div>
         </div>
@@ -119,7 +135,7 @@
                 break;
             }
             case 3: {
-                smiles = "CC(C)N1C2=CC=CC=C2C(=C1C=CC(CC(CC(=O)O)O)O)C3=CC=C(C=C3)F";
+                smiles = "C2=CC=CC=C2";
                 break;
             }
         }
@@ -129,67 +145,89 @@
 
     function resultGrid(){
 
+        var query =$("#searchBox").val();
+        var queBuscar = "";
+        var queryString = "";
+        if ($("#queBuscar").val() == 1) { //moleculas
+            queryString = queryString + "q=smiles:"+query+"&";
+            queBuscar = "smiles";
+
+        } else{ //aros
+            queryString = queryString + "q=rings:"+query+"&";
+            queBuscar = "rings";
+        }
+        queryString = queryString + "fl=*,score,distance:strdist%28%22"+query+"%22,"+queBuscar+",atoms,rings,edit%29"+
+                                    "&sort=strdist%28%22"+query+"%22,%20"+queBuscar+",%20edit%29%20desc" +
+                                    "&wt=json";
 
         $.ajax({
             url:'http://localhost:8983/solr/collection1/select',
             type:'GET',
-            data: "q=manu:belkin&" +
-                    "fl=*,score,distance:strdist%28%22belkin%22,manu,edit%29" +
-                    "&sort=strdist%28%22belkin%22,%20manu,%20edit%29%20desc" +
-                    "&wt=json",
+            data: queryString,
+            /*
+                    "q=manu:belkin&" +
+                    "fl=*,score,distance:strdist%28%22"+query+"%22,"+queBuscar+",edit%29" +
+                    "&sort=strdist%28%22"+query+"%22,%20"+queBuscar+",%20edit%29%20desc" +
+                    "&wt=json",*/
             dataType: 'json',
             success: function( json ) {
-               // $("#resultH").empty();
-                $("#resultH").append('' +
-                        '<div class="row">' +
-                        '  <div class="col-md-4">' +
-                        '<strong >Smiles</strong>' +
-                        '</div>' +
-                        '<div class="col-md-1">' +
-                        '        <strong>PubchemID</strong>' +
-                        '</div>' +
-                        '<div class="col-md-2">' +
-                        '        <strong>Estructura</strong>' +
-                        '</div>' +
-                        '<div class="col-md-1">' +
-                        '        <strong>Átomos</strong>' +
-                        '</div>' +
-                        '<div class="col-md-1">' +
-                        '        <strong>Aros</strong>' +
-                        '</div>' +
-                        '<div class="col-md-1">' +
-                        '        <strong>Distancia</strong>' +
-                        '</div>' +
-                        '</div>'
-                );
 
-                var row = 0;
-                $.each(json.response.docs, function() {
+                if (json.response.numFound > 0){
 
-                    var fotos ='<div class="row r'+row%2+' ">'+
+                    // $("#resultH").empty();
+                    $("#resultH").append('' +
+                            '<div class="row">' +
                             '  <div class="col-md-4">' +
-                            '<span >'+this.id+'</span>' +
+                            '<strong >Smiles</strong>' +
                             '</div>' +
                             '<div class="col-md-1">' +
-                            '        <span>'+this.id+'</span>' +
+                            '        <strong>PubchemID</strong>' +
                             '</div>' +
                             '<div class="col-md-2">' +
-                            '        <span>'+this.id+'</span>' +
+                            '        <strong>Estructura</strong>' +
                             '</div>' +
                             '<div class="col-md-1">' +
-                            '        <span>'+this.id+'</span>' +
+                            '        <strong>Átomos</strong>' +
                             '</div>' +
                             '<div class="col-md-1">' +
-                            '        <span>'+this.id+'</span>' +
+                            '        <strong>Aros</strong>' +
                             '</div>' +
                             '<div class="col-md-1">' +
-                            '        <span>'+this.distance+'</span>' +
+                            '        <strong>Distancia</strong>' +
                             '</div>' +
-                            '</div>';
+                            '</div>'
+                    );
 
-                    $("#resultH").append(fotos);
-                    row++;
-                });
+                    var row = 0;
+                    $.each(json.response.docs, function() {
+
+                        var fotos ='<div class="row r'+row%2+' ">'+
+                                '  <div class="col-md-4">' +
+                                '<span >'+this.id+'</span>' +
+                                '</div>' +
+                                '<div class="col-md-1">' +
+                                '        <span>'+this.id+'</span>' +
+                                '</div>' +
+                                '<div class="col-md-2">' +
+                                '        <span>'+this.id+'</span>' +
+                                '</div>' +
+                                '<div class="col-md-1">' +
+                                '        <span>'+this.id+'</span>' +
+                                '</div>' +
+                                '<div class="col-md-1">' +
+                                '        <span>'+this.id+'</span>' +
+                                '</div>' +
+                                '<div class="col-md-1">' +
+                                '        <span>'+this.distance+'</span>' +
+                                '</div>' +
+                                '</div>';
+
+                        $("#resultH").append(fotos);
+                        row++;
+                    });
+                }else{
+                    $("#resultH").append('<p class="bg-danger">Su búsqueda no ha devuelto ningún resultado</p>');
+                }
             },
             error: function( ){
                 $('#resultH').append("Error desplegando los resultados de búsqueda" );
