@@ -156,19 +156,19 @@
             queryString = queryString + "q=rings:"+query+"&";
             queBuscar = "rings";
         }
-        queryString = queryString + "fl=*,score,distance:strdist%28%22"+query+"%22,"+queBuscar+",atoms,rings,edit%29"+
-                                    "&sort=strdist%28%22"+query+"%22,%20"+queBuscar+",%20edit%29%20desc" +
-                                    "&wt=json";
+        queryString = queryString + "fl=*,score,distance:strdist%28%22"+query+"%22,"+queBuscar+",pubchemid,atoms,rings,edit%29"+
+                "&sort=strdist%28%22"+query+"%22,%20"+queBuscar+",%20edit%29%20desc" +
+                "&wt=json";
 
         $.ajax({
             url:'http://localhost:8983/solr/collection1/select',
             type:'GET',
             data: queryString,
             /*
-                    "q=manu:belkin&" +
-                    "fl=*,score,distance:strdist%28%22"+query+"%22,"+queBuscar+",edit%29" +
-                    "&sort=strdist%28%22"+query+"%22,%20"+queBuscar+",%20edit%29%20desc" +
-                    "&wt=json",*/
+             "q=manu:belkin&" +
+             "fl=*,score,distance:strdist%28%22"+query+"%22,"+queBuscar+",edit%29" +
+             "&sort=strdist%28%22"+query+"%22,%20"+queBuscar+",%20edit%29%20desc" +
+             "&wt=json",*/
             dataType: 'json',
             success: function( json ) {
 
@@ -203,19 +203,19 @@
 
                         var fotos ='<div class="row r'+row%2+' ">'+
                                 '  <div class="col-md-4">' +
-                                '<span >'+this.id+'</span>' +
+                                '<span >'+this.smiles+'</span>' +
                                 '</div>' +
                                 '<div class="col-md-1">' +
-                                '        <span>'+this.id+'</span>' +
+                                '        <span><a href="https://pubchem.ncbi.nlm.nih.gov/summary/summary.cgi?cid='+this.pubchemid+' target="_blank">'+this.pubchemid+'</a></span>' +
+                                '</div>' +
+                                '<div class="col-md-1">' +
+                                '        <span>'+this.name+'</span>' +
                                 '</div>' +
                                 '<div class="col-md-2">' +
-                                '        <span>'+this.id+'</span>' +
+                                '        <span>'+this.atoms+'</span>' +
                                 '</div>' +
                                 '<div class="col-md-1">' +
-                                '        <span>'+this.id+'</span>' +
-                                '</div>' +
-                                '<div class="col-md-1">' +
-                                '        <span>'+this.id+'</span>' +
+                                '        <span>'+this.rings+'</span>' +
                                 '</div>' +
                                 '<div class="col-md-1">' +
                                 '        <span>'+this.distance+'</span>' +
