@@ -156,12 +156,12 @@
             queryString = queryString + "q=rings:"+query+"&";
             queBuscar = "rings";
         }
-        queryString = queryString + "fl=*,score,distance:strdist%28%22"+query+"%22,"+queBuscar+",pubchemid,atoms,rings,edit%29"+
-                "&sort=strdist%28%22"+query+"%22,%20"+queBuscar+",%20edit%29%20desc" +
+        queryString = queryString + "fl=*,score,distance:strdist%28%22"+query+"%22,"+queBuscar+",edit%29"+
+                "&sort=strdist%28%22"+query+"%22,%20"+queBuscar+",edit%29%20desc" +
                 "&wt=json";
 
         $.ajax({
-            url:'http://localhost:8983/solr/collection1/select',
+            url:'http://localhost:8983/solr/smiles/select',
             type:'GET',
             data: queryString,
             /*
