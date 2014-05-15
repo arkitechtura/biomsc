@@ -135,7 +135,7 @@
                 break;
             }
             case 3: {
-                smiles = "C2=CC=CC=C2";
+                smiles = "C1=CC=CC=C1";
                 break;
             }
         }
@@ -226,10 +226,12 @@
                         row++;
                     });
                 }else{
+                    $("#resultH").empty();
                     $("#resultH").append('<p class="bg-danger">Su búsqueda no ha devuelto ningún resultado</p>');
                 }
             },
             error: function( ){
+                $("#resultH").empty();
                 $('#resultH').append("Error desplegando los resultados de búsqueda" );
             }
         });
