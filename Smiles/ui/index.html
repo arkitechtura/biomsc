@@ -49,16 +49,25 @@
 <div class="jumbotron">
     <div class="container">
         <div class="row">
-            <div class="col-md-8 col-md-offset-1">
+            <div class="col-md-7 col-md-offset-1">
                 <label for="searchBox">Escriba la estructura en SMILES:</label>
             </div>
+            <div class="col-md-1">
+                <label for="searchBox">Umbral:</label>
+            </div>
+
         </div>
         <form role="form" name="search" action="#" id="searchForm" method="get" class="">
             <div class="row">
 
-                <div class="col-md-8 col-md-offset-1">
+                <div class="col-md-7 col-md-offset-1">
                     <div class="form-group">
                         <input type="text" name="searchBox" class="search form-control" id="searchBox" value=""/>
+                    </div>
+                </div>
+                <div class="col-md-1">
+                    <div class="form-group">
+                        <input type="text" name="threshold" class="search form-control" id="threshold" value="0.15"/>
                     </div>
                 </div>
                 <div class="col-md-2">
@@ -99,8 +108,9 @@
 
 <div class="container"  data-bind="foreach: docs">
 
-    <div id="resultH"></div>
-    <div id="resultG"></div>
+    <div id="resultPrediction"></div>
+    <div id="searchResults"></div>
+
 
     <hr>
 
@@ -123,105 +133,131 @@
 <script src="js/bootstrap.min.js"></script>
 <script>
 
-    function ejemplo(ej,event){
-        var smiles ="";
-        switch (ej){
-            case 1: {
-                smiles = "CCC(C)C(=O)OC1CCC=C2C1C(C(C=C2)C)CCC3CC(CC(=O)O3)O";
-                break;
-            }
-            case 2: {
-                smiles = "CC(C)C1=C(C(=C(N1CCC(CC(CC(=O)O)O)O)C2=CC=C(C=C2)F)C3=CC=CC=C3)C(=O)NC4=CC=CC=C4";
-                break;
-            }
-            case 3: {
-                smiles = "C1=CC=CC=C1";
-                break;
-            }
+function ejemplo(ej,event){
+    var smiles ="";
+    switch (ej){
+        case 1: {
+            smiles = "CCC(C)C(=O)OC1CCC=C2C1C(C(C=C2)C)CCC3CC(CC(=O)O3)O";
+            break;
         }
-        $("#searchBox").val(smiles);
-        //event.preventDefault();
-    }
-
-    function resultGrid(){
-
-        var query =$("#searchBox").val();
-        var queBuscar = "";
-        var queryString = "";
-        if ($("#queBuscar").val() == 1) { //moleculas
-            queryString = queryString + "q=smiles:"+query+"&";
-            queBuscar = "smiles";
-
-        } else{ //aros
-            queryString = queryString + "q=rings:"+query+"&";
-            queBuscar = "rings";
+        case 2: {
+            smiles = "CC(C)C1=C(C(=C(N1CCC(CC(CC(=O)O)O)O)C2=CC=C(C=C2)F)C3=CC=CC=C3)C(=O)NC4=CC=CC=C4";
+            break;
         }
-        queryString = queryString + "fl=*,score,distance:strdist%28%22"+query+"%22,"+queBuscar+",edit%29"+
-                "&sort=strdist%28%22"+query+"%22,%20"+queBuscar+",edit%29%20desc" +
-                "&wt=json";
-
-
-        $.ajax({
-            url:'http://localhost:8983/solr/smiles/select',
-            type:'GET',
-            data: queryString,
-            /*
-             "q=manu:belkin&" +
-             "fl=*,score,distance:strdist%28%22"+query+"%22,"+queBuscar+",edit%29" +
-             "&sort=strdist%28%22"+query+"%22,%20"+queBuscar+",%20edit%29%20desc" +
-             "&wt=json",*/
-            dataType: 'json',
-            success: function( json ) {
-
-                if (json.response.numFound > 0){
-
-                    // $("#resultH").empty();
-                    $("#resultH").append('' +
-                            '<div class="row">' +
-                            '  <div class="col-md-9">' +
-                            '<strong >Smiles</strong>' +
-                            '</div>' +
-                            '<div class="col-md-1">' +
-                            '        <strong>PubchemID</strong>' +
-                            '</div>' +
-                            '<div class="col-md-1">' +
-                            '        <strong>Distancia</strong>' +
-                            '</div>' +
-                            '</div>'
-                    );
-
-                    var row = 0;
-                    $.each(json.response.docs, function() {
-
-                        var fotos ='<div class="row r'+row%2+' ">'+
-                                '  <div class="col-md-9">' +
-                                '<span >'+this.smiles+'</span>' +
-                                '</div>' +
-                                '<div class="col-md-1">' +
-                                '        <span><a href="https://pubchem.ncbi.nlm.nih.gov/summary/summary.cgi?cid='+this.pubchemid+'" target="_blank">'+this.pubchemid+'</a></span>' +
-                                '</div>' +
-                                '<div class="col-md-1">' +
-                                '        <span>'+this.distance+'</span>' +
-                                '</div>' +
-                                '</div>';
-
-                        $("#resultH").append(fotos);
-                        row++;
-                    });
-                }else{
-                    $("#resultH").empty();
-                    $("#resultH").append('<p class="bg-danger">Su búsqueda no ha devuelto ningún resultado</p>');
-                }
-            },
-            error: function( ){
-                $("#resultH").empty();
-                $('#resultH').append("Error desplegando los resultados de búsqueda" );
-            }
-        });
-
-
+        case 3: {
+            smiles = "C1=CC=CC=C1";
+            break;
+        }
     }
+    $("#searchBox").val(smiles);
+    //event.preventDefault();
+}
 
-    resultGrid();
+function resultGrid(){
+
+    var query =$("#searchBox").val();
+    var queBuscar = "";
+    var queryString = "";
+    if ($("#queBuscar").val() == 1) { //moleculas
+        queryString = queryString + "q=smiles:"+query+"&";
+        queBuscar = "smiles";
+
+    } else{ //aros
+        queryString = queryString + "q=rings:"+query+"&";
+        queBuscar = "rings";
+    }
+    queryString = queryString + "fl=*,score,distance:strdist%28%22"+query+"%22,"+queBuscar+",edit%29"+
+            "&sort=strdist%28%22"+query+"%22,%20"+queBuscar+",edit%29%20desc" +
+            "&wt=json&start=0&rows=50";
+
+    $.ajax({
+        url:'http://localhost:8983/solr/smiles/select',
+        type:'GET',
+        data: queryString,
+        dataType: 'json',
+        success: function( json ) {
+
+        $("#searchResults").empty();
+        if (json.response.numFound > 0){
+
+            // $("#resultH").empty();
+            $("#searchResults").append('' +
+                    '<div class="row">' +
+                    '  <div class="col-md-9">' +
+                    '<strong >Smiles</strong>' +
+                    '</div>' +
+                    '<div class="col-md-1">' +
+                    '        <strong>PubchemID</strong>' +
+                    '</div>' +
+                    '<div class="col-md-1">' +
+                    '        <strong>Distancia</strong>' +
+                    '</div>' +
+                    '</div>'
+            );
+
+            var row = 0;
+            var on = 0 ;
+            var off = 0;
+            $.each(json.response.docs, function() {
+
+                var result ='<div class="row r'+row%2+' ">'+
+                        '  <div class="col-md-9">' +
+                        '<span >'+this.smiles+'</span>' +
+                        '</div>' +
+                        '<div class="col-md-1">' +
+                        '        <span><a href="https://pubchem.ncbi.nlm.nih.gov/summary/summary.cgi?cid='+this.pubchemid+'" target="_blank">'+this.pubchemid+'</a></span>' +
+                        '</div>' +
+                        '<div class="col-md-1">' +
+                        '        <span>'+this.distance+'</span>' +
+                        '</div>' +
+                        '</div>';
+
+                $("#searchResults").append(result);
+                if ((1- this.distance <= $("#threshold").val()) && this.toxicity == 1) //está dentro del humbral y t
+                    on++;
+                if ((1- this.distance < $("#threshold").val()) && this.toxicity == 0)
+                    off++;
+                row++;
+            });
+            var prediction = "";
+
+            if (on >= off){ //hay mas con la característica
+                var percentage = on / (on+off);
+                prediction = "<div class='alert-success'>"+percentage.toString()+" de los resultados indican que la estructura buscada podría contener la característica de toxicidad</div> ";
+            }
+            if (off > on){
+                var percentage = off / (on+off);
+                prediction = "<div class='alert-warning'>"+percentage.toString()+" de los resultados indican que la estructura buscada podría no contener la característica de toxicidad</div> ";
+            }
+            if (on == off && on !=0){
+                var percentage = on / (on+off);
+                prediction = "<div class='alert-info'>"+percentage.toString()+" de los resultados indican que la estructura buscada podría contener la característica de toxicidad</div> ";
+            }
+            if (on == 0 && off==0)
+            {
+                var percentage = on / (on+off);
+                prediction = "<div class='alert-danger'> No hay resultados dentro del umbral para predecir la caraterística</div> ";
+            }
+            $("#resultPrediction").empty();
+            $("#resultPrediction").append(prediction);
+
+        }else{
+            $("#searchResults").empty();
+            $("#searchResults").append('<p class="bg-danger">Su búsqueda no ha devuelto ningún resultado</p>');
+        }
+
+
+
+        },
+        error: function( ){
+            $("#resultH").empty();
+            $('#resultH').append("Error desplegando los resultados de búsqueda" );
+        }
+    });
+
+
+}
+
+resultGrid();
 </script>
 </body>
