@@ -96,8 +96,6 @@
         <div class="row">
             <div class="col-md-8 col-md-offset-1">
                 <ul>
-                    <li><a href="#" onclick="ejemplo(1);">Ejemplo Estructura</a> </li>
-                    <li><a href="#" onclick="ejemplo(2);">Ejemplo Estructura</a> </li>
                     <li><a href="#" onclick="ejemplo(3);">Ejemplo Aro</a> </li>
                 </ul>
             </div>
@@ -166,94 +164,109 @@ function resultGrid(){
         queryString = queryString + "q=rings:"+query+"&";
         queBuscar = "rings";
     }
+
+
     queryString = queryString + "fl=*,score,distance:strdist%28%22"+query+"%22,"+queBuscar+",edit%29"+
             "&sort=strdist%28%22"+query+"%22,%20"+queBuscar+",edit%29%20desc" +
             "&wt=json&start=0&rows=50";
 
-    $.ajax({
-        url:'http://localhost:8983/solr/smiles/select',
-        type:'GET',
-        data: queryString,
-        dataType: 'json',
-        success: function( json ) {
+      $.ajax({
+     url:'http://localhost:8983/solr/smiles/select',
+     type:'GET',
+     data: queryString,
+     dataType: 'json',
+     success: function( json ) {
 
-        $("#searchResults").empty();
-        if (json.response.numFound > 0){
-
-            // $("#resultH").empty();
-            $("#searchResults").append('' +
-                    '<div class="row">' +
-                    '  <div class="col-md-9">' +
-                    '<strong >Smiles</strong>' +
-                    '</div>' +
-                    '<div class="col-md-1">' +
-                    '        <strong>PubchemID</strong>' +
-                    '</div>' +
-                    '<div class="col-md-1">' +
-                    '        <strong>Distancia</strong>' +
-                    '</div>' +
-                    '</div>'
-            );
-
-            var row = 0;
-            var on = 0 ;
-            var off = 0;
-            $.each(json.response.docs, function() {
-
-                var result ='<div class="row r'+row%2+' ">'+
-                        '  <div class="col-md-9">' +
-                        '<span >'+this.smiles+'</span>' +
-                        '</div>' +
-                        '<div class="col-md-1">' +
-                        '        <span><a href="https://pubchem.ncbi.nlm.nih.gov/summary/summary.cgi?cid='+this.pubchemid+'" target="_blank">'+this.pubchemid+'</a></span>' +
-                        '</div>' +
-                        '<div class="col-md-1">' +
-                        '        <span>'+this.distance+'</span>' +
-                        '</div>' +
-                        '</div>';
-
-                $("#searchResults").append(result);
-                if ((1- this.distance <= $("#threshold").val()) && this.toxicity == 1) //está dentro del humbral y t
-                    on++;
-                if ((1- this.distance < $("#threshold").val()) && this.toxicity == 0)
-                    off++;
-                row++;
-            });
-            var prediction = "";
-
-            if (on >= off){ //hay mas con la característica
-                var percentage = on / (on+off);
-                prediction = "<div class='alert-success'>"+percentage.toString()+" de los resultados indican que la estructura buscada podría contener la característica de toxicidad</div> ";
-            }
-            if (off > on){
-                var percentage = off / (on+off);
-                prediction = "<div class='alert-warning'>"+percentage.toString()+" de los resultados indican que la estructura buscada podría no contener la característica de toxicidad</div> ";
-            }
-            if (on == off && on !=0){
-                var percentage = on / (on+off);
-                prediction = "<div class='alert-info'>"+percentage.toString()+" de los resultados indican que la estructura buscada podría contener la característica de toxicidad</div> ";
-            }
-            if (on == 0 && off==0)
-            {
-                var percentage = on / (on+off);
-                prediction = "<div class='alert-danger'> No hay resultados dentro del umbral para predecir la caraterística</div> ";
-            }
-            $("#resultPrediction").empty();
-            $("#resultPrediction").append(prediction);
-
-        }else{
-            $("#searchResults").empty();
-            $("#searchResults").append('<p class="bg-danger">Su búsqueda no ha devuelto ningún resultado</p>');
-        }
+     $("#searchResults").empty();
 
 
 
-        },
-        error: function( ){
-            $("#resultH").empty();
-            $('#resultH').append("Error desplegando los resultados de búsqueda" );
-        }
-    });
+         if (json.response.numFound > 0){
+
+             // $("#resultH").empty();
+             $("#searchResults").append('' +
+                     '<div class="row">' +
+                     '  <div class="col-md-9">' +
+                     '<strong >Smiles</strong>' +
+                     '</div>' +
+                     '<div class="col-md-1">' +
+                     '        <strong>PubchemID</strong>' +
+                     '</div>' +
+                     '<div class="col-md-1">' +
+                     '        <strong>Distancia</strong>' +
+                     '</div>' +
+                     '</div>'
+             );
+
+             var row = 0;
+             var on = 0 ;
+             var off = 0;
+             $.each(json.response.docs, function() {
+
+                 var result ='<div class="row r'+row%2+' ">'+
+                         '  <div class="col-md-9">' +
+                         '<span >'+this.smiles+'</span>' +
+                         '</div>' +
+                         '<div class="col-md-1">' +
+                         '        <span><a href="https://pubchem.ncbi.nlm.nih.gov/summary/summary.cgi?cid='+this.pubchemid+'" target="_blank">'+this.pubchemid+'</a></span>' +
+                         '</div>' +
+                         '<div class="col-md-1">' +
+                         '        <span>'+this.distance+'</span>' +
+                         '</div>' +
+                         '</div>';
+
+                 $("#searchResults").append(result);
+                 if ((1- this.distance <= $("#threshold").val()) && this.toxicity == 1) //está dentro del humbral y t
+                     on++;
+                 if ((1- this.distance < $("#threshold").val()) && this.toxicity == 0)
+                     off++;
+                 row++;
+             });
+             var prediction = "";
+
+             if (on >= off){ //hay mas con la característica
+                 var percentage = on / (on+off);
+                 if (percentage ==1)
+                     percentage = "100%";
+                 prediction = "<div class='alert-success'>"+percentage.toString()+" de los resultados dentro del umbral indican que la estructura buscada podría contener la característica de toxicidad</div> ";
+             }
+             if (off > on){
+                 var percentage = off / (on+off);
+                 if (percentage ==1)
+                     percentage = "100%";
+                 prediction = "<div class='alert-warning'>"+percentage.toString()+" de los resultados dentro del umbral indican que la estructura buscada podría no contener la característica de toxicidad</div> ";
+             }
+             if (on == off && on !=0){
+                 var percentage = on / (on+off);
+                 if (percentage ==1)
+                     percentage = "100%";
+                 prediction = "<div class='alert-info'>"+percentage.toString()+" de los resultados dentro del umbral indican que la estructura buscada podría contener la característica de toxicidad</div> ";
+             }
+             if (on == 0 && off==0)
+             {
+                 var percentage = on / (on+off);
+                 if (percentage ==1)
+                     percentage = "100%";
+                 prediction = "<div class='alert-danger'> No hay resultados dentro del umbral para predecir la caraterística</div> ";
+             }
+             $("#resultPrediction").empty();
+             $("#resultPrediction").append(prediction);
+
+         }else{
+             $("#searchResults").empty();
+             $("#searchResults").append('<p class="bg-danger">Su búsqueda no ha devuelto ningún resultado</p>');
+         }
+
+
+
+
+
+     },
+     error: function( ){
+     $("#resultH").empty();
+     $('#resultH').append("Error desplegando los resultados de búsqueda" );
+     }
+     });
 
 
 }
