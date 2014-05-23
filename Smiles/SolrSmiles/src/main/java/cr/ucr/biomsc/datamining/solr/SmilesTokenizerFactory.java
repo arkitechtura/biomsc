@@ -32,6 +32,6 @@ public class SmilesTokenizerFactory extends TokenizerFactory {
   @Override
   public Tokenizer create(AttributeSource.AttributeFactory attributeFactory, Reader reader) {
     SmilesTokenizer.MODE tokenizerMode = "atoms".equalsIgnoreCase(mode) ? SmilesTokenizer.MODE.ATOMS : SmilesTokenizer.MODE.RINGS;
-    return new SmilesTokenizer(attributeFactory, reader, tokenizerMode);
+    return new SmilesTokenizer(tokenizerMode, attributeFactory, reader);
   }
 }

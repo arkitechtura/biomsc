@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/CDKParserTests/CDKParserTests.iml" filepath="$PROJECT_DIR$/CDKParserTests/CDKParserTests.iml" />
       <module fileurl="file://$PROJECT_DIR$/Smiles.iml" filepath="$PROJECT_DIR$/Smiles.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SmilesSolrPost/SmilesSolrPost.iml" filepath="$PROJECT_DIR$/SmilesSolrPost/SmilesSolrPost.iml" />
       <module fileurl="file://$PROJECT_DIR$/SolrSmiles/SolrSmiles.iml" filepath="$PROJECT_DIR$/SolrSmiles/SolrSmiles.iml" />
     </modules>
   </component>

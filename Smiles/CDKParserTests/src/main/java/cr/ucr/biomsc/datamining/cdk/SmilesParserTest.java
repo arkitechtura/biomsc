@@ -23,7 +23,7 @@ import static org.openscience.cdk.graph.ConnectivityChecker.*;
  */
 public class SmilesParserTest {
   public static void main(String[] args) {
-    String smiles = "CCc1nn(C)c2c(=O)[nH]c(nc12)c3cc(ccc3OCC)S(=O)(=O)N4CCN(C)CC4";
+    String smiles = "COC(=O)C(\\C)=C\\C1C(C)(C)[C@H]1C(=O)O[C@@H]2C(C)=C(C(=O)C2)CC=CC=C";
     testOne(smiles);
     testTwo(smiles);
   }
@@ -33,7 +33,7 @@ public class SmilesParserTest {
     try {
       Reader r = new StringReader(smiles);
       SMILESReader smilesReader = new SMILESReader(r);
-      MoleculeSet components = null;
+      MoleculeSet components = new MoleculeSet();
       components = smilesReader.read(components);
       for (IAtomContainer component : components.atomContainers()) {
         IRingSet ringset = new SSSRFinder(component).findSSSR();

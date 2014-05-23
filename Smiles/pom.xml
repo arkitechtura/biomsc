@@ -11,6 +11,7 @@
     <modules>
         <module>CDKParserTests</module>
         <module>SolrSmiles</module>
+        <module>SmilesSolrPost</module>
     </modules>
     <build>
         <pluginManagement>
