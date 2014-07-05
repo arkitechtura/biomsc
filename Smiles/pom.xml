@@ -12,6 +12,7 @@
         <module>CDKParserTests</module>
         <module>SolrSmiles</module>
         <module>SmilesSolrPost</module>
+        <module>SMSDTests</module>
     </modules>
     <build>
         <pluginManagement>
@@ -33,6 +34,28 @@
                                 <groupId>org.openscience</groupId>
                                 <artifactId>cdk</artifactId>
                                 <version>1.4.19</version>
+                                <packaging>jar</packaging>
+                            </configuration>
+                        </execution>
+                    </executions>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-install-plugin</artifactId>
+                    <version>2.5.1</version>
+                    <executions>
+                        <execution>
+                            <id>install-smsd</id>
+                            <phase>install</phase>
+                            <goals>
+                                <goal>install-file</goal>
+                            </goals>
+                            <inherited>false</inherited>
+                            <configuration>
+                                <file>${pom.basedir}/lib/SMSD20140525.jar</file>
+                                <groupId>org.openscience</groupId>
+                                <artifactId>smsd</artifactId>
+                                <version>20140525</version>
                                 <packaging>jar</packaging>
                             </configuration>
                         </execution>

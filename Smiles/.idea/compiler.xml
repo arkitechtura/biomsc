@@ -24,6 +24,7 @@
         <processorPath useClasspath="true" />
         <module name="CDKParserTests" />
         <module name="SmilesSolrPost" />
+        <module name="SMSDTests" />
         <module name="SolrSmiles" />
       </profile>
     </annotationProcessing>

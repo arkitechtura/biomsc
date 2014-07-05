@@ -17,6 +17,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Iterator;
 import java.util.Properties;
+import java.util.UUID;
 
 /**
  * Created by equiros on 5/14/2014.
@@ -46,6 +47,7 @@ public class SmilesSolrPostUtility {
     private String[] line;
     private SmilesGenerator generator;
     private SmilesParser parser;
+     int counter = 0;
 
     CSVReaderIterator(CSVReader reader) {
       this.reader = reader;
@@ -57,6 +59,7 @@ public class SmilesSolrPostUtility {
     public boolean hasNext() {
       try {
         line = reader.readNext();
+        if (line != null) counter++;
         return line != null;
       }
       catch (IOException e) {
@@ -71,18 +74,32 @@ public class SmilesSolrPostUtility {
     }
 
     private SmilesDocument buildDocument(String[] line) {
-      try {
-        SmilesDocument doc = new SmilesDocument();
-        doc.pubchemid = Integer.parseInt(line[0]);
-        doc.smiles = line[1];
-        doc.toxicity = Integer.parseInt(line[2]);
-        doc.canonicalSmiles = canonicalizeSmiles(doc.smiles);
-        return doc;
-      }
-      catch (InvalidSmilesException e) {
-        logger.error("Error creating SmilesDocument", e);
-        throw new RuntimeException(e);
-      }
+      SmilesDocument doc = new SmilesDocument();
+      doc.id = UUID.randomUUID().toString();
+      doc.cid = line[0];
+      doc.molecularFormula = line[1];
+      doc.molecularWeight = parseFloat(line[2]);
+      doc.canonicalSmiles = line[3];
+      doc.isomericSmiles = line[4];
+      doc.name = line[5];
+      doc.exactMass = parseFloat(line[6]);
+      doc.heavyAtomCount = parseInt(line[7]);
+      doc.charge = parseInt(line[8]);
+      doc.volume3d = parseFloat(line[9]);
+      doc.featureRingCount3d = parseInt(line[10]);
+      doc.featureHydrophobeCount3d = parseInt(line[11]);
+      doc.toxicity = parseInt(line[12]);
+      return doc;
+    }
+
+    private int parseInt(String s) {
+      if (s == null || "".equals(s.trim())) return Integer.MIN_VALUE;
+      return Integer.parseInt(s);
+    }
+
+    private float parseFloat(String s) {
+      if (s == null || "".equals(s.trim())) return Float.NaN;
+      return Float.parseFloat(s);
     }
 
     private String canonicalizeSmiles(String smiles) throws InvalidSmilesException {
@@ -98,6 +115,7 @@ public class SmilesSolrPostUtility {
   private void processFile(final CSVReader reader, HttpSolrServer solr) throws IOException, SolrServerException {
     Iterator<SmilesDocument> iterator = new CSVReaderIterator(reader);
     solr.addBeans(iterator);
+    logger.info("About to commit " + ((CSVReaderIterator) iterator).counter + " rows.");
     solr.commit();
   }
 
